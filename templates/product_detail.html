@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}
+   Lesson: {{product.title}}
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class=" w-100 mt-5 ">
+        <div class="row shadow-sm ">
+            <div class="col-4 p-3">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                       <div style="margin: 15px auto;">
+                            {% if product.video %}
+                                <video  width="350" controls  controlsList="nodownload" oncontextmenu="return false;">
+                                    <source src="{{product.video.url}}"  type="video/mp4" >
+                                </video>
+                           {% else %}
+
+                           {%endif%}
+				        </div>
+                        <div>
+                            {% if product.file_doc_set %}
+                                {% for i in product.file_doc_set.all %}
+                                        hello
+                                    <h4>PDF Example</h4>
+                                    <p>Open a PDF file <a href="{{ i.file_doc.url }}">example</a>.</p>
+                                {% endfor %}
+                            {% else %}
+
+                            {%endif%}
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+              </div>
+            </div>
+            <div class="col-7 p-5 ">
+                <h4>{{product.title}}</h4>
+                <p >{{product.description|safe}}</p>
+
+            </div>
+        </div>
+        <div class="col-4 mt-5 shadow-sm ">
+                <h6 class="pt-2" >Add comment</h6>
+                <form action="{% url 'product:comment_new' product.id %}" method="post" class="input-group"> {% csrf_token %}
+                    <input class="form-control" name="body" type="text" placeholder="Type your comment..." aria-describedby="'button-addon" >
+                    <button class="btn btn-outline-success" type="submit" id="button-addon">Send</button>
+                </form>
+                <hr>
+                <h6>Comments</h6>
+                {% for comment in product.comment_set.all %}
+                <small class="text-muted" >@{{comment.author}} | {{comment.date}}</small>
+                <p>{{comment.body}}
+                    {% if request.user == comment.author %}
+                        <small><a href="{% url 'product:comment_delete' product.id comment.id   %}">delete</a></small>
+                    {% endif %}
+
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+
+</div>
+{% endblock content %}
+

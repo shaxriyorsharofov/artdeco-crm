@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+  News
+{% endblock title %}
+
+{% block content %}
+   <!-- Product Cart Start -->
+   <div class="container">
+    <div class=" w-100 mt-4">
+        <h4 class="d-block" >News</h4>
+        <div class="d-flex flex-wrap justify-content-between">
+            {% for i in news %}
+            <!-- Product Cart Start -->
+            <div class="card border border-0 shadow-sm d-inline-block m-1 mt-3" style="width: 16.5rem;" >
+                <img height="200" class=" card-img-top" src="{{i.news_image.url}}" alt="">
+                <div class="card-body">
+                    <h6 class="align-center card-title">{{i.title}}</h6>
+                    <span class="center card-text"><small>{{i.description}}</small></span>
+                </div>
+            </div>
+            <!-- Product Cart End -->
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+<!-- Product Cart End -->
+{% endblock content %}
+
