@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-$x!qsng$mhoz096^yoeq@n5m2za7c5rwz#9b*_ey)kmy^1p-hz
 # DEBUG = env.bool("DEBUG")
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['64.226.80.201']
 # CSRF_TRUSTED_ORIGINS  = ['https://artdecouz.up.railway.app/']
 
 # Application definition
@@ -73,23 +73,23 @@ WSGI_APPLICATION = 'crm_platform.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': env.str('NAME'),
-#         'USER': env.str('USER'),
-#         'PASSWORD': env.str('PASSWORD'),
-#         'HOST': env.str('HOST'),
-#         'PORT': env.str('PORT'),
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'projectartdecouz',
+        'USER': 'artdecouz',
+        'PASSWORD': 'artdecouz321',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
